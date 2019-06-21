@@ -37,15 +37,24 @@ export class Rover {
     if (this.direction == CardinalPoints.N) {
       this.direction = CardinalPoints.E;
     } else if (this.direction == CardinalPoints.E) {
-      this.direction = CardinalPoints.S
+      this.direction = CardinalPoints.S;
+    } else if (this.direction == CardinalPoints.S) {
+      this.direction = CardinalPoints.W;
+    } else if (this.direction == CardinalPoints.W) {
+      this.direction = CardinalPoints.N;
     }
+
   }
 
   turnLeft() {
     if (this.direction == CardinalPoints.N) {
       this.direction = CardinalPoints.W;
     } else if (this.direction == CardinalPoints.W) {
-      this.direction = CardinalPoints.S
+      this.direction = CardinalPoints.S;
+    }  else if (this.direction == CardinalPoints.S) {
+      this.direction = CardinalPoints.E;
+    }  else if (this.direction == CardinalPoints.E) {
+      this.direction = CardinalPoints.N;
     }
   }
 }
