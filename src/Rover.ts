@@ -18,26 +18,34 @@ export class Rover {
   }
 
   forward() {
-    if (this.direction === CardinalPoints.N) {
-      this.location.incrementY();
-    } else if (this.direction === CardinalPoints.E) {
-      this.location.incrementX();
-    } else if (this.direction === CardinalPoints.S) {
-      this.location.decrementY();
-    } else if (this.direction === CardinalPoints.W) {
-      this.location.decrementX();
+    switch (this.direction) {
+      case CardinalPoints.E:
+        this.location.incrementX();
+        break;
+      case CardinalPoints.S:
+        this.location.decrementY();
+        break;
+      case CardinalPoints.W:
+        this.location.decrementX();
+        break;
+      default:
+        this.location.incrementY();
     }
   }
 
   backward() {
-    if (this.direction === CardinalPoints.N) {
-      this.location.decrementY();
-    } else if (this.direction === CardinalPoints.E) {
-      this.location.decrementX();
-    } else if (this.direction === CardinalPoints.S) {
-      this.location.incrementY();
-    } else if (this.direction === CardinalPoints.W) {
-      this.location.incrementX();
+    switch (this.direction) {
+      case CardinalPoints.E:
+        this.location.decrementX();
+        break;
+      case CardinalPoints.S:
+        this.location.incrementY();
+        break;
+      case CardinalPoints.W:
+        this.location.incrementX();
+        break;
+      default:
+        this.location.decrementY();
     }
   }
 
