@@ -2,67 +2,100 @@ import { CardinalPoints, Rover } from '../src/Rover';
 import { Location} from '../src/Location';
 
 
-describe('The Rover robot should', () => {
-  it('have initial location', () => {
+describe('The Rover robot should be initial', () => {
+  it('location', () => {
     const rover = new Rover();
 
     expect(rover.location).toEqual(new Location(0, 0));
   });
 
-  it('have initial direction', () => {
+  it('direction', () => {
     const rover = new Rover();
 
     expect(rover.direction).toEqual(CardinalPoints.N);
   });
 
-  it('be move forward with initial direction', () => {
+});
+
+describe('The Rover robot should move forward', () => {
+  it('in north direction', () => {
     const rover = new Rover();
     rover.forward();
 
     expect(rover.location).toEqual(new Location(0, 1));
   });
 
-  it('be move backward with initial direction', () => {
+  it('in east direction', () => {
+    const rover = new Rover();
+    rover.turnRight();
+    rover.forward();
+
+    expect(rover.location).toEqual(new Location(1, 0));
+  });
+
+  it('in south direction', () => {
+    const rover = new Rover();
+    rover.turnLeft();
+    rover.turnLeft();
+    rover.forward();
+
+    expect(rover.location).toEqual(new Location(0, -1));
+  });
+
+  it('in west direction', () => {
+    const rover = new Rover();
+    rover.turnLeft();
+    rover.forward();
+
+    expect(rover.location).toEqual(new Location(-1, 0));
+  });
+
+});
+
+describe('The Rover robot should move backward', () => {
+  it('in north direction', () => {
     const rover = new Rover();
     rover.backward();
 
     expect(rover.location).toEqual(new Location(0, -1));
   });
 
-  it('be turn right with initial direction', () => {
+  it('in east direction', () => {
     const rover = new Rover();
     rover.turnRight();
-
-    expect(rover.direction).toEqual(CardinalPoints.E);
-  });
-
-  it('be turn left with initial direction', () => {
-    const rover = new Rover();
-    rover.turnLeft();
-
-    expect(rover.direction).toEqual(CardinalPoints.W);
-  });
-
-  it('be forward to east direction', () => {
-    const rover = new Rover();
-    rover.turnRight();
-    rover.forward();
-
-    expect(rover.location).toEqual(new Location(1, 0));
-    expect(rover.direction).toEqual(CardinalPoints.E);
-  });
-
-  it('be forward to west direction', () => {
-    const rover = new Rover();
-    rover.turnLeft();
-    rover.forward();
+    rover.backward();
 
     expect(rover.location).toEqual(new Location(-1, 0));
-    expect(rover.direction).toEqual(CardinalPoints.W);
   });
 
+  it('in south direction', () => {
+    const rover = new Rover();
+    rover.turnLeft();
+    rover.turnLeft();
+    rover.backward();
 
-  it('be look south turning 180 degrees', () => {
+    expect(rover.location).toEqual(new Location(0, 1));
+  });
+
+  it('in west direction', () => {
+    const rover = new Rover();
+    rover.turnLeft();
+    rover.backward();
+
+    expect(rover.location).toEqual(new Location(1, 0));
+  });
+
+});
+
+describe('The Rover robot should turn right and look', () => {
+  it('to east', () => {
+    const rover = new Rover();
+    rover.turnRight();
+
+    expect(rover.direction).toEqual(CardinalPoints.E);
+  });
+
+  it('to south', () => {
     const rover = new Rover();
     rover.turnRight();
     rover.turnRight();
@@ -70,7 +103,7 @@ describe('The Rover robot should', () => {
     expect(rover.direction).toEqual(CardinalPoints.S);
   });
 
-  it('be look south turning 270 degrees', () => {
+  it('to west', () => {
     const rover = new Rover();
     rover.turnRight();
     rover.turnRight();
@@ -79,7 +112,7 @@ describe('The Rover robot should', () => {
     expect(rover.direction).toEqual(CardinalPoints.W);
   });
 
-  it('be look south turning 360 degrees', () => {
+  it('to north', () => {
     const rover = new Rover();
     rover.turnRight();
     rover.turnRight();
@@ -89,7 +122,17 @@ describe('The Rover robot should', () => {
     expect(rover.direction).toEqual(CardinalPoints.N);
   });
 
-  it('be look south turning -180 degrees', () => {
+});
+
+describe('The Rover robot should turn left and look', () => {
+  it('to west', () => {
+    const rover = new Rover();
+    rover.turnLeft();
+
+    expect(rover.direction).toEqual(CardinalPoints.W);
+  });
+
+  it('to south', () => {
     const rover = new Rover();
     rover.turnLeft();
     rover.turnLeft();
@@ -97,7 +140,7 @@ describe('The Rover robot should', () => {
     expect(rover.direction).toEqual(CardinalPoints.S);
   });
 
-  it('be look south turning -270 degrees', () => {
+  it('to east', () => {
     const rover = new Rover();
     rover.turnLeft();
     rover.turnLeft();
@@ -106,7 +149,7 @@ describe('The Rover robot should', () => {
     expect(rover.direction).toEqual(CardinalPoints.E);
   });
 
-  it('be look south turning -360 degrees', () => {
+  it('to north', () => {
     const rover = new Rover();
     rover.turnLeft();
     rover.turnLeft();
@@ -114,16 +157,6 @@ describe('The Rover robot should', () => {
     rover.turnLeft();
 
     expect(rover.direction).toEqual(CardinalPoints.N);
-  });
-
-  it('be forward to south direction', () => {
-    const rover = new Rover();
-    rover.turnLeft();
-    rover.turnLeft();
-    rover.forward();
-
-    expect(rover.location).toEqual(new Location(0, -1));
-    expect(rover.direction).toEqual(CardinalPoints.S);
   });
 
 });

@@ -30,7 +30,15 @@ export class Rover {
   }
 
   backward() {
-    this.location.decrementY();
+    if (this.direction === CardinalPoints.N) {
+      this.location.decrementY();
+    } else if (this.direction === CardinalPoints.E) {
+      this.location.decrementX();
+    } else if (this.direction === CardinalPoints.S) {
+      this.location.incrementY();
+    } else if (this.direction === CardinalPoints.W) {
+      this.location.incrementX();
+    }
   }
 
   turnRight() {
