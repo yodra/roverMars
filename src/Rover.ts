@@ -1,10 +1,10 @@
 import { Location } from './Location';
 
 export enum CardinalPoints {
-  N,
-  E,
-  S,
-  W
+  N = 1,
+  E = 2,
+  S = 3,
+  W = 4
 }
 
 export class Rover {
@@ -18,7 +18,15 @@ export class Rover {
   }
 
   forward() {
-    this.location.incrementY();
+    if (this.direction === CardinalPoints.N) {
+      this.location.incrementY();
+    } else if (this.direction === CardinalPoints.E) {
+      this.location.incrementX();
+    } else if (this.direction === CardinalPoints.S) {
+      this.location.decrementY();
+    } else if (this.direction === CardinalPoints.W) {
+      this.location.decrementX();
+    }
   }
 
   backward() {
@@ -26,7 +34,18 @@ export class Rover {
   }
 
   turnRight() {
-    this.direction = CardinalPoints.E;
+    if (this.direction == CardinalPoints.N) {
+      this.direction = CardinalPoints.E;
+    } else if (this.direction == CardinalPoints.E) {
+      this.direction = CardinalPoints.S
+    }
   }
 
+  turnLeft() {
+    if (this.direction == CardinalPoints.N) {
+      this.direction = CardinalPoints.W;
+    } else if (this.direction == CardinalPoints.W) {
+      this.direction = CardinalPoints.S
+    }
+  }
 }

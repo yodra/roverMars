@@ -13,8 +13,15 @@ export class Location {
     this.y++;
   }
 
+  incrementX() {
+    this.x++;
+  }
+
   decrementY() {
     this.y--;
   }
 
+  decrementX() {
+    this.x--;
+  }
 }
