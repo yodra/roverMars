@@ -5,7 +5,6 @@ export enum CardinalPoints {
   E,
   S,
   W,
-
 }
 
 export class Rover {
@@ -16,6 +15,28 @@ export class Rover {
   constructor() {
     this.location = new Location(0, 0);
     this.direction = CardinalPoints.N;
+  }
+
+  execute(...commands : string[]) {
+    commands.forEach(command => {
+      this.executeACommand(command);
+    });
+  }
+
+  executeACommand(command: String) {
+    switch (command) {
+      case 'b':
+        this.backward();
+        break;
+      case 'r':
+        this.turnRight();
+        break;
+      case 'l':
+        this.turnLeft();
+        break;
+      default:
+        this.forward();
+    }
   }
 
   forward() {
@@ -81,4 +102,5 @@ export class Rover {
         this.direction = CardinalPoints.W;
     }
   }
+
 }

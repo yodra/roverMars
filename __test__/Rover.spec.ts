@@ -160,3 +160,46 @@ describe('The Rover robot should turn left and look', () => {
   });
 
 });
+
+describe('The Rover robot should be execute a command', () => {
+  it('f -> forward', () => {
+    const rover = new Rover();
+    rover.execute('f');
+
+    expect(rover.location).toEqual(new Location(0, 1));
+  });
+
+  it('b -> backward', () => {
+    const rover = new Rover();
+    rover.execute('b');
+
+    expect(rover.location).toEqual(new Location(0, -1));
+  });
+
+  it('r -> right', () => {
+    const rover = new Rover();
+    rover.execute('r');
+
+    expect(rover.direction).toEqual(CardinalPoints.E);
+  });
+
+
+  it('l -> left', () => {
+    const rover = new Rover();
+    rover.execute('l');
+
+    expect(rover.direction).toEqual(CardinalPoints.W);
+  });
+});
+
+describe('The Rover robot should be execute some commands', () => {
+  it('r, r, b -> right, right, backward ', () => {
+    const rover = new Rover();
+    rover.execute('r', 'r', 'b');
+
+
+    expect(rover.direction).toEqual(CardinalPoints.S);
+    expect(rover.location).toEqual(new Location(0, 1));
+  });
+
+});
