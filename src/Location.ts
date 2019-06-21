@@ -1,20 +1,11 @@
-export enum CardinalPoints {
-  N,
-  E,
-  S,
-  W
-}
-
 export class Location {
 
   private x: number;
   private y: number;
-  private direction: CardinalPoints;
 
-  constructor(x: number, y: number, direction: CardinalPoints) {
+  constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
-    this.direction = direction;
 
   }
 
@@ -26,7 +17,4 @@ export class Location {
     this.y--;
   }
 
-  turnRight() {
-    this.direction = CardinalPoints.E;
-  }
 }

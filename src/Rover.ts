@@ -1,22 +1,32 @@
-import { CardinalPoints, Location } from './Location';
+import { Location } from './Location';
+
+export enum CardinalPoints {
+  N,
+  E,
+  S,
+  W
+}
 
 export class Rover {
 
-  public position: Location;
+  public location: Location;
+  public  direction: CardinalPoints;
 
   constructor() {
-    this.position = new Location(0, 0, CardinalPoints.N);
+    this.location = new Location(0, 0);
+    this.direction = CardinalPoints.N;
   }
 
   forward() {
-    this.position.incrementY();
+    this.location.incrementY();
   }
 
   backward() {
-    this.position.decrementY();
+    this.location.decrementY();
   }
 
   turnRight() {
-    this.position.turnRight();
+    this.direction = CardinalPoints.E;
   }
+
 }
