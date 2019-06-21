@@ -202,4 +202,13 @@ describe('The Rover robot should be execute some commands', () => {
     expect(rover.location).toEqual(new Location(0, 1));
   });
 
+  it(' -> right, right, backward ', () => {
+    const rover = new Rover();
+    rover.execute('r', 'r', 'b', 'r', 'f', 'f', 'f', 'l');
+
+
+    expect(rover.direction).toEqual(CardinalPoints.S);
+    expect(rover.location).toEqual(new Location(-3, 1));
+  });
+
 });
