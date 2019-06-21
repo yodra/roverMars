@@ -11,4 +11,12 @@ export class Rover {
   forward() {
     this.position.incrementY();
   }
+
+  backward() {
+    this.position.decrementY();
+  }
+
+  turnRight() {
+    this.position.turnRight();
+  }
 }

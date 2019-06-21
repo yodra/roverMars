@@ -1,7 +1,7 @@
 export enum CardinalPoints {
   N,
-  S,
   E,
+  S,
   W
 }
 
@@ -20,5 +20,13 @@ export class Location {
 
   incrementY() {
     this.y++;
+  }
+
+  decrementY() {
+    this.y--;
+  }
+
+  turnRight() {
+    this.direction = CardinalPoints.E;
   }
 }
