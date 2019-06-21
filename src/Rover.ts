@@ -1,10 +1,11 @@
 import { Location } from './Location';
 
 export enum CardinalPoints {
-  N = 1,
-  E = 2,
-  S = 3,
-  W = 4
+  N,
+  E,
+  S,
+  W,
+
 }
 
 export class Rover {
@@ -50,27 +51,34 @@ export class Rover {
   }
 
   turnRight() {
-    if (this.direction == CardinalPoints.N) {
-      this.direction = CardinalPoints.E;
-    } else if (this.direction == CardinalPoints.E) {
-      this.direction = CardinalPoints.S;
-    } else if (this.direction == CardinalPoints.S) {
-      this.direction = CardinalPoints.W;
-    } else if (this.direction == CardinalPoints.W) {
-      this.direction = CardinalPoints.N;
+    switch (this.direction) {
+      case CardinalPoints.E:
+        this.direction = CardinalPoints.S;
+        break;
+      case CardinalPoints.S:
+        this.direction = CardinalPoints.W;
+        break;
+      case CardinalPoints.W:
+        this.direction = CardinalPoints.N;
+        break;
+      default:
+        this.direction = CardinalPoints.E;
     }
-
   }
 
   turnLeft() {
-    if (this.direction == CardinalPoints.N) {
-      this.direction = CardinalPoints.W;
-    } else if (this.direction == CardinalPoints.W) {
-      this.direction = CardinalPoints.S;
-    }  else if (this.direction == CardinalPoints.S) {
-      this.direction = CardinalPoints.E;
-    }  else if (this.direction == CardinalPoints.E) {
-      this.direction = CardinalPoints.N;
+    switch (this.direction) {
+      case CardinalPoints.E:
+        this.direction = CardinalPoints.N;
+        break;
+      case CardinalPoints.S:
+        this.direction = CardinalPoints.E;
+        break;
+      case CardinalPoints.W:
+        this.direction = CardinalPoints.S;
+        break;
+      default:
+        this.direction = CardinalPoints.W;
     }
   }
 }
