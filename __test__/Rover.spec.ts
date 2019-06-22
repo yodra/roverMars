@@ -1,6 +1,24 @@
-import { CardinalPoints, Rover } from '../src/Rover';
-import { Location} from '../src/Location';
+import { Rover } from '../src/Rover';
+import { North, East, South, West } from '../src/CardinalPoints';
+import { Location } from '../src/Location';
 
+class RoverTest extends Rover {
+  static RoverLookingToEast(): Rover {
+    const rover = new Rover()
+    rover.direction = new East();
+    return rover
+  }
+  static RoverLookingToSouth(): Rover {
+    const rover = new Rover()
+    rover.direction = new South();
+    return rover
+  }
+  static RoverLookingToWest(): Rover {
+    const rover = new Rover()
+    rover.direction = new West();
+    return rover
+  }
+}
 
 describe('The Rover robot should be initial', () => {
   it('location', () => {
@@ -12,7 +30,81 @@ describe('The Rover robot should be initial', () => {
   it('direction', () => {
     const rover = new Rover();
 
-    expect(rover.direction).toEqual(CardinalPoints.N);
+    expect(rover.direction.name).toEqual(new North().name);
+  });
+
+});
+
+describe('The Rover robot should turn right and look', () => {
+  it('to east', () => {
+    const rover = new Rover();
+    rover.turnRight();
+
+    expect(rover.direction.name).toEqual(new East().name);
+  });
+
+  it('to south', () => {
+    const rover = new Rover();
+    rover.turnRight();
+    rover.turnRight();
+
+    expect(rover.direction.name).toEqual(new South().name);
+  });
+
+  it('to west', () => {
+    const rover = new Rover();
+    rover.turnRight();
+    rover.turnRight();
+    rover.turnRight();
+
+    expect(rover.direction.name).toEqual(new West().name);
+  });
+
+  it('to north', () => {
+    const rover = new Rover();
+    rover.turnRight();
+    rover.turnRight();
+    rover.turnRight();
+    rover.turnRight();
+
+    expect(rover.direction.name).toEqual(new North().name);
+  });
+
+});
+
+describe('The Rover robot should turn left and look', () => {
+  it('to west', () => {
+    const rover = new Rover();
+    rover.turnLeft();
+
+    expect(rover.direction.name).toEqual(new West().name);
+  });
+
+  it('to south', () => {
+    const rover = new Rover();
+    rover.turnLeft();
+    rover.turnLeft();
+
+    expect(rover.direction.name).toEqual(new South().name);
+  });
+
+  it('to east', () => {
+    const rover = new Rover();
+    rover.turnLeft();
+    rover.turnLeft();
+    rover.turnLeft();
+
+    expect(rover.direction.name).toEqual(new East().name);
+  });
+
+  it('to north', () => {
+    const rover = new Rover();
+    rover.turnLeft();
+    rover.turnLeft();
+    rover.turnLeft();
+    rover.turnLeft();
+
+    expect(rover.direction.name).toEqual(new North().name);
   });
 
 });
@@ -26,25 +118,21 @@ describe('The Rover robot should move forward', () => {
   });
 
   it('in east direction', () => {
-    const rover = new Rover();
-    rover.turnRight();
+    const rover = RoverTest.RoverLookingToEast()
     rover.forward();
 
     expect(rover.location).toEqual(new Location(1, 0));
   });
 
   it('in south direction', () => {
-    const rover = new Rover();
-    rover.turnLeft();
-    rover.turnLeft();
+    const rover = RoverTest.RoverLookingToSouth()
     rover.forward();
 
     expect(rover.location).toEqual(new Location(0, -1));
   });
 
   it('in west direction', () => {
-    const rover = new Rover();
-    rover.turnLeft();
+    const rover = RoverTest.RoverLookingToWest()
     rover.forward();
 
     expect(rover.location).toEqual(new Location(-1, 0));
@@ -61,102 +149,24 @@ describe('The Rover robot should move backward', () => {
   });
 
   it('in east direction', () => {
-    const rover = new Rover();
-    rover.turnRight();
+    const rover = RoverTest.RoverLookingToEast()
     rover.backward();
 
     expect(rover.location).toEqual(new Location(-1, 0));
   });
 
   it('in south direction', () => {
-    const rover = new Rover();
-    rover.turnLeft();
-    rover.turnLeft();
+    const rover = RoverTest.RoverLookingToSouth()
     rover.backward();
 
     expect(rover.location).toEqual(new Location(0, 1));
   });
 
   it('in west direction', () => {
-    const rover = new Rover();
-    rover.turnLeft();
+    const rover = RoverTest.RoverLookingToWest()
     rover.backward();
 
     expect(rover.location).toEqual(new Location(1, 0));
-  });
-
-});
-
-describe('The Rover robot should turn right and look', () => {
-  it('to east', () => {
-    const rover = new Rover();
-    rover.turnRight();
-
-    expect(rover.direction).toEqual(CardinalPoints.E);
-  });
-
-  it('to south', () => {
-    const rover = new Rover();
-    rover.turnRight();
-    rover.turnRight();
-
-    expect(rover.direction).toEqual(CardinalPoints.S);
-  });
-
-  it('to west', () => {
-    const rover = new Rover();
-    rover.turnRight();
-    rover.turnRight();
-    rover.turnRight();
-
-    expect(rover.direction).toEqual(CardinalPoints.W);
-  });
-
-  it('to north', () => {
-    const rover = new Rover();
-    rover.turnRight();
-    rover.turnRight();
-    rover.turnRight();
-    rover.turnRight();
-
-    expect(rover.direction).toEqual(CardinalPoints.N);
-  });
-
-});
-
-describe('The Rover robot should turn left and look', () => {
-  it('to west', () => {
-    const rover = new Rover();
-    rover.turnLeft();
-
-    expect(rover.direction).toEqual(CardinalPoints.W);
-  });
-
-  it('to south', () => {
-    const rover = new Rover();
-    rover.turnLeft();
-    rover.turnLeft();
-
-    expect(rover.direction).toEqual(CardinalPoints.S);
-  });
-
-  it('to east', () => {
-    const rover = new Rover();
-    rover.turnLeft();
-    rover.turnLeft();
-    rover.turnLeft();
-
-    expect(rover.direction).toEqual(CardinalPoints.E);
-  });
-
-  it('to north', () => {
-    const rover = new Rover();
-    rover.turnLeft();
-    rover.turnLeft();
-    rover.turnLeft();
-    rover.turnLeft();
-
-    expect(rover.direction).toEqual(CardinalPoints.N);
   });
 
 });
@@ -180,15 +190,14 @@ describe('The Rover robot should be execute a command', () => {
     const rover = new Rover();
     rover.execute('r');
 
-    expect(rover.direction).toEqual(CardinalPoints.E);
+    expect(rover.direction.name).toEqual(new East().name);
   });
-
 
   it('l -> left', () => {
     const rover = new Rover();
     rover.execute('l');
 
-    expect(rover.direction).toEqual(CardinalPoints.W);
+    expect(rover.direction.name).toEqual(new West().name);
   });
 });
 
@@ -198,17 +207,7 @@ describe('The Rover robot should be execute some commands', () => {
     rover.execute('r', 'r', 'b');
 
 
-    expect(rover.direction).toEqual(CardinalPoints.S);
+    expect(rover.direction.name).toEqual(new South().name);
     expect(rover.location).toEqual(new Location(0, 1));
   });
-
-  it(' -> right, right, backward ', () => {
-    const rover = new Rover();
-    rover.execute('r', 'r', 'b', 'r', 'f', 'f', 'f', 'l');
-
-
-    expect(rover.direction).toEqual(CardinalPoints.S);
-    expect(rover.location).toEqual(new Location(-3, 1));
-  });
-
 });

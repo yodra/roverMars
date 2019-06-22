@@ -1,106 +1,36 @@
+import { North } from './CardinalPoints';
 import { Location } from './Location';
-
-export enum CardinalPoints {
-  N,
-  E,
-  S,
-  W,
-}
+import { Terminal } from './Terminal';
 
 export class Rover {
-
-  public location: Location;
-  public  direction: CardinalPoints;
+  public direction: any;
+  public location: Location
+  private terminal: Terminal
 
   constructor() {
+    this.direction = new North();
     this.location = new Location(0, 0);
-    this.direction = CardinalPoints.N;
+    this.terminal = new Terminal(this)
   }
 
-  execute(...commands : string[]) {
-    commands.forEach(command => {
-      this.executeACommand(command);
-    });
+  execute = (...commands : string[]) => {
+    commands.forEach(command => this.terminal.process(command).execute())
   }
 
-  executeACommand(command: String) {
-    switch (command) {
-      case 'b':
-        this.backward();
-        break;
-      case 'r':
-        this.turnRight();
-        break;
-      case 'l':
-        this.turnLeft();
-        break;
-      default:
-        this.forward();
-    }
+  forward = () => {
+    this.location = this.direction.forward()
+  }
+  
+  backward = () => {
+    this.location = this.direction.backward()
   }
 
-  forward() {
-    switch (this.direction) {
-      case CardinalPoints.E:
-        this.location.incrementX();
-        break;
-      case CardinalPoints.S:
-        this.location.decrementY();
-        break;
-      case CardinalPoints.W:
-        this.location.decrementX();
-        break;
-      default:
-        this.location.incrementY();
-    }
+  turnRight = () => {
+    this.direction = this.direction.next()
   }
 
-  backward() {
-    switch (this.direction) {
-      case CardinalPoints.E:
-        this.location.decrementX();
-        break;
-      case CardinalPoints.S:
-        this.location.incrementY();
-        break;
-      case CardinalPoints.W:
-        this.location.incrementX();
-        break;
-      default:
-        this.location.decrementY();
-    }
-  }
-
-  turnRight() {
-    switch (this.direction) {
-      case CardinalPoints.E:
-        this.direction = CardinalPoints.S;
-        break;
-      case CardinalPoints.S:
-        this.direction = CardinalPoints.W;
-        break;
-      case CardinalPoints.W:
-        this.direction = CardinalPoints.N;
-        break;
-      default:
-        this.direction = CardinalPoints.E;
-    }
-  }
-
-  turnLeft() {
-    switch (this.direction) {
-      case CardinalPoints.E:
-        this.direction = CardinalPoints.N;
-        break;
-      case CardinalPoints.S:
-        this.direction = CardinalPoints.E;
-        break;
-      case CardinalPoints.W:
-        this.direction = CardinalPoints.S;
-        break;
-      default:
-        this.direction = CardinalPoints.W;
-    }
+  turnLeft = () => {
+    this.direction = this.direction.previous()
   }
 
 }

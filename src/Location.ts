@@ -6,7 +6,10 @@ export class Location {
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
-
+  }
+  
+  getLocation(): Location {
+    return this;
   }
 
   incrementY() {
