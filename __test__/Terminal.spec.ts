@@ -5,7 +5,6 @@ import { Location } from '../src/Location';
 describe('The terminal should be process commands and', () => {
     const rover = new Rover()
     const terminal = new Terminal(rover)
-    
     const command = "f"
     
     it('help', () => {

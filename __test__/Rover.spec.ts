@@ -23,6 +23,10 @@ class RoverTest extends Rover {
 describe('The Rover robot should be initial', () => {
   const rover = new Rover();
 
+  it('exists', () => {
+    expect(rover).toBeDefined();
+  });
+
   it('location', () => {
     expect(rover.location).toEqual(new Location(0, 0));
   });
