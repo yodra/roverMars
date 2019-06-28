@@ -21,7 +21,8 @@ export class Terminal {
                 return this.generate(this.rover.turnRight, "turn right 90 degrees") 
             case 'l': 
                 return this.generate(this.rover.turnLeft, "turn left 90 degrees") 
-            default: throw "Command not found"
+            default: 
+                throw "Command not found"
         }
     }
 

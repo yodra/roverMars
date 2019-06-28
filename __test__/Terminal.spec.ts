@@ -6,15 +6,13 @@ describe('The terminal should be process commands and', () => {
     const rover = new Rover()
     const terminal = new Terminal(rover)
     
+    const command = "f"
+    
     it('help', () => {
-        const command = "f"
-        const expectHelp = "The robot move to front"
-        expect(terminal.process(command).help()).toEqual(expectHelp);
+        expect(terminal.process(command).help()).toEqual("The robot move to front");
     });
 
     it('execute', () => {
-        const command = "f"
-
         terminal.process(command).execute()
         rover.forward()
 

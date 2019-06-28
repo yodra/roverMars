@@ -14,10 +14,6 @@ class CardinalPoint {
     constructor(location?: Location) {
         this.location = location || new Location(0, 0)
     }
-
-    static equals = (cardinalPointA: CardinalPoint, cardinalPointB: CardinalPoint): Boolean => {
-        return JSON.stringify(cardinalPointA) === JSON.stringify(cardinalPointB)
-    } 
 }
 
 class North extends CardinalPoint implements CardinalPointImpl {
